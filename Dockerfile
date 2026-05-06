@@ -1,9 +1,10 @@
-
-# FROM python:3.11.15
-
-FROM python:3.15.0a7-slim-trixie
+# Switching to a stable, slim version of Python
+FROM python:3.11-slim-bookworm
 
 WORKDIR /app
+
+# Best Practice: Ensure the OS packages are updated during build
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 
 COPY main.py .
 
